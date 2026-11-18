@@ -1,0 +1,29 @@
+# Dependencies & Build Outputs
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Tauri / Rust
+src-tauri/target/
+src-tauri/gen/
+
+# Android / Gradle
+android/.gradle/
+android/app/build/
+android/build/
+android/.idea/
+android/local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# OS & Logs
+.DS_Store
+Thumbs.db
+*.log

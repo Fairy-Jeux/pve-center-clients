@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#030712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PVE Center" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>PVE Command Center</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('pve_panel_theme') || 'system';
+          var prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolved =
+            stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
+          var root = document.documentElement;
+          root.classList.remove('light', 'dark');
+          root.classList.add(resolved);
+          root.style.colorScheme = resolved;
+          var accent = localStorage.getItem('pve_panel_accent') || 'cyan';
+          var bgMapDark = {
+            cyan: '#030816',
+            cider: '#120409',
+            indigo: '#06071c',
+            emerald: '#03120c',
+            amber: '#130a03',
+            purple: '#0e041a'
+          };
+          var bgMapLight = {
+            cyan: '#eef4fa',
+            cider: '#fdf2f5',
+            indigo: '#eff0fd',
+            emerald: '#ecfdf5',
+            amber: '#fff8ec',
+            purple: '#f6f0ff'
+          };
+          var darkBg = bgMapDark[accent] || '#030816';
+          var lightBg = bgMapLight[accent] || '#eef4fa';
+          root.style.setProperty('--theme-bg-dark', darkBg);
+          root.style.setProperty('--theme-bg-light', lightBg);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', resolved === 'dark' ? darkBg : lightBg);
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="antialiased selection:bg-cyan-500/25 selection:text-cyan-700 dark:selection:bg-cyan-500/30 dark:selection:text-cyan-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

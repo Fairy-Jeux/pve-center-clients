@@ -1,0 +1,29 @@
+name: Feature Request
+description: Suggest an improvement or new capability for Desktop or Android clients
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: target
+    attributes:
+      label: Target Platform
+      options:
+        - All Clients (Shared UI / API)
+        - Windows & Linux Desktop (Tauri v2)
+        - Android (Capacitor 8)
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Use Case
+      description: What homelab workflow or client UX problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe the behavior, UI, or native integration you would like to see.
+    validations:
+      required: true
